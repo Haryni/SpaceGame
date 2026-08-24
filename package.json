@@ -1,0 +1,16 @@
+{
+  "name": "nasa-space-academy",
+  "version": "1.0.0",
+  "description": "NASA Space Apps Challenge - Astronaut Certification Academy",
+  "main": "server/index.js",
+  "scripts": {
+    "dev:server": "node server/index.js",
+    "dev:client": "npm --prefix client run dev",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "build:client": "npm --prefix client run build",
+    "start": "node server/index.js"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

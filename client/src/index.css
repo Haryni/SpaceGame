@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-space-dark: #090314;
+    --color-space-purple: #130a2a;
+    --color-space-panel: #1d103c;
+    --color-yellow-btn: #ffb700;
+    --color-yellow-hover: #ffa000;
+    --color-cyan-btn: #00e5ff;
+    --color-cyan-hover: #00b3cc;
+    --color-green-glow: #00ff66;
+    --color-pink-glow: #ff007f;
+  }
+
+  body {
+    background-color: #090314;
+    background-image: 
+      radial-gradient(circle at 50% 10%, rgba(76, 29, 149, 0.35) 0%, transparent 60%),
+      radial-gradient(circle at 80% 80%, rgba(0, 229, 255, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 10% 90%, rgba(255, 0, 127, 0.12) 0%, transparent 50%);
+    background-attachment: fixed;
+    color: #f1f5f9;
+    font-family: 'Fredoka', 'Outfit', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom Game Buttons inspired by Reference Image 1 */
+.btn-yellow-game {
+  background: linear-gradient(180deg, #ffe066 0%, #ffb700 45%, #e69500 100%);
+  border: 3px solid #fff5cc;
+  box-shadow: 0 6px 0 #b37400, 0 10px 20px rgba(255, 183, 0, 0.4);
+  color: #3d2000;
+  font-weight: 800;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+  transition: all 0.15s ease-in-out;
+}
+
+.btn-yellow-game:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 0 #b37400, 0 14px 25px rgba(255, 183, 0, 0.6);
+}
+
+.btn-yellow-game:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 #b37400, 0 4px 10px rgba(255, 183, 0, 0.3);
+}
+
+.btn-cyan-game {
+  background: linear-gradient(180deg, #80f5ff 0%, #00e5ff 45%, #00a3cc 100%);
+  border: 3px solid #e0ffff;
+  box-shadow: 0 6px 0 #007399, 0 10px 20px rgba(0, 229, 255, 0.4);
+  color: #003344;
+  font-weight: 800;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+  transition: all 0.15s ease-in-out;
+}
+
+.btn-cyan-game:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 0 #007399, 0 14px 25px rgba(0, 229, 255, 0.6);
+}
+
+.btn-cyan-game:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 #007399, 0 4px 10px rgba(0, 229, 255, 0.3);
+}
+
+.btn-purple-game {
+  background: linear-gradient(180deg, #b17aff 0%, #7c3aed 45%, #5b21b6 100%);
+  border: 3px solid #e9d5ff;
+  box-shadow: 0 6px 0 #3b0764, 0 10px 20px rgba(124, 58, 237, 0.4);
+  color: #ffffff;
+  font-weight: 800;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  transition: all 0.15s ease-in-out;
+}
+
+.btn-purple-game:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 0 #3b0764, 0 14px 25px rgba(124, 58, 237, 0.6);
+}
+
+.btn-purple-game:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 #3b0764, 0 4px 10px rgba(124, 58, 237, 0.3);
+}
+
+/* Glassmorphism Space Panels */
+.glass-panel {
+  background: rgba(29, 16, 60, 0.75);
+  backdrop-filter: blur(16px);
+  border: 2px solid rgba(168, 85, 247, 0.25);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.glass-panel-glow {
+  background: rgba(30, 15, 65, 0.85);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(0, 229, 255, 0.4);
+  box-shadow: 0 0 25px rgba(0, 229, 255, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.8; filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.6)); }
+  50% { opacity: 1; filter: drop-shadow(0 0 22px rgba(0, 229, 255, 0.95)); }
+}
+
+@keyframes pulseRed {
+  0%, 100% { filter: drop-shadow(0 0 8px rgba(255, 0, 80, 0.6)); }
+  50% { filter: drop-shadow(0 0 20px rgba(255, 0, 80, 0.95)); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+.animate-pulse-red {
+  animation: pulseRed 1.5s ease-in-out infinite;
+}
+
+.animate-twinkle {
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #090314;
+}
+::-webkit-scrollbar-thumb {
+  background: #4c1d95;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #7c3aed;
+}
