@@ -1,8 +1,8 @@
 import React from 'react';
-import { Volume2, VolumeX, Rocket, Award, Star, ArrowLeft, ShieldCheck } from 'lucide-react';
+import { Volume2, VolumeX, Rocket, Trophy, BookOpen, Star, ArrowLeft } from 'lucide-react';
 import { playButtonClick, playButtonHover } from '../utils/soundEngine';
 
-export default function Navbar({ cadet, score, soundEnabled, onToggleSound, currentView, onNavigate }) {
+export default function Navbar({ cadet, score, soundEnabled, onToggleSound, currentView, onNavigate, onOpenLeaderboard, onOpenManual }) {
   const getRankTitle = (scoreCount) => {
     if (scoreCount >= 300) return 'Commander 🚀';
     if (scoreCount >= 150) return 'Officer 🛰️';
@@ -52,9 +52,37 @@ export default function Navbar({ cadet, score, soundEnabled, onToggleSound, curr
           </div>
         </div>
 
-        {/* Right: Cadet Status, Score, & Sound Toggle */}
-        <div className="flex items-center space-x-3">
+        {/* Right: Quick Tools, Leaderboard, Manual, Score, & Sound */}
+        <div className="flex items-center space-x-2.5">
           
+          {/* Field Manual Button */}
+          <button
+            onClick={() => {
+              playButtonClick();
+              onOpenManual();
+            }}
+            onMouseEnter={playButtonHover}
+            className="btn-cyan-game p-2 rounded-xl text-xs font-bold flex items-center space-x-1 cursor-pointer"
+            title="Open Cadet Science Field Manual"
+          >
+            <BookOpen className="w-4 h-4 text-cyan-900" />
+            <span className="hidden md:inline">Field Manual</span>
+          </button>
+
+          {/* Hall of Fame Leaderboard Button */}
+          <button
+            onClick={() => {
+              playButtonClick();
+              onOpenLeaderboard();
+            }}
+            onMouseEnter={playButtonHover}
+            className="btn-yellow-game p-2 rounded-xl text-xs font-bold flex items-center space-x-1 cursor-pointer"
+            title="Open Hall of Fame Leaderboard"
+          >
+            <Trophy className="w-4 h-4 text-yellow-900" />
+            <span className="hidden md:inline">Hall of Fame</span>
+          </button>
+
           {/* Cadet Rank Badge */}
           {cadet && (
             <div className="hidden sm:flex items-center space-x-2 bg-purple-950/80 border border-purple-700/50 rounded-2xl px-3 py-1.5">
@@ -68,7 +96,7 @@ export default function Navbar({ cadet, score, soundEnabled, onToggleSound, curr
 
           {/* Score Counter */}
           <div className="flex items-center space-x-1.5 bg-yellow-950/40 border border-yellow-500/40 px-3 py-1.5 rounded-2xl shadow-inner shadow-yellow-500/20">
-            <Star className="w-4 h-4 text-yellow-400 fill-yellow-400 animate-spin-slow" />
+            <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
             <span className="text-sm font-black text-yellow-300">{score} PTS</span>
           </div>
 
@@ -86,7 +114,7 @@ export default function Navbar({ cadet, score, soundEnabled, onToggleSound, curr
             }`}
             title={soundEnabled ? 'Mute Game Audio' : 'Unmute Game Audio'}
           >
-            {soundEnabled ? <Volume2 className="w-5 h-5" /> : <VolumeX className="w-5 h-5" />}
+            {soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
           </button>
         </div>
 

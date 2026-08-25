@@ -6,8 +6,10 @@ import BioDome from './components/BioDome';
 import CargoBay from './components/CargoBay';
 import ObservationDeck from './components/ObservationDeck';
 import Graduation from './components/Graduation';
+import Leaderboard from './components/Leaderboard';
+import CadetManual from './components/CadetManual';
 import { loginCadet, updateModuleProgress } from './utils/api';
-import { toggleSound, isSoundEnabled } from './utils/soundEngine';
+import { toggleSound } from './utils/soundEngine';
 
 export default function App() {
   const [cadet, setCadet] = useState(null);
@@ -19,6 +21,10 @@ export default function App() {
   const [totalScore, setTotalScore] = useState(0);
   const [currentView, setCurrentView] = useState('dashboard');
   const [soundActive, setSoundActive] = useState(true);
+
+  // Modals state
+  const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
+  const [isManualOpen, setIsManualOpen] = useState(false);
 
   // Restore cadet session from localStorage if available
   useEffect(() => {
@@ -83,6 +89,8 @@ export default function App() {
         onToggleSound={handleToggleSound}
         currentView={currentView}
         onNavigate={(view) => setCurrentView(view)}
+        onOpenLeaderboard={() => setIsLeaderboardOpen(true)}
+        onOpenManual={() => setIsManualOpen(true)}
       />
 
       {/* Main View Router */}
@@ -134,6 +142,19 @@ export default function App() {
           </>
         )}
       </main>
+
+      {/* Hall of Fame Leaderboard Modal */}
+      <Leaderboard
+        isOpen={isLeaderboardOpen}
+        onClose={() => setIsLeaderboardOpen(false)}
+        currentCadetId={cadet?.id}
+      />
+
+      {/* Cadet Field Manual Modal */}
+      <CadetManual
+        isOpen={isManualOpen}
+        onClose={() => setIsManualOpen(false)}
+      />
 
     </div>
   );
