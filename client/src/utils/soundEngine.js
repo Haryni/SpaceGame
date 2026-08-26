@@ -42,9 +42,7 @@ export const playButtonHover = () => {
 
     osc.start();
     osc.stop(ctx.currentTime + 0.05);
-  } catch (e) {
-    console.warn('Audio play error:', e);
-  }
+  } catch (e) {}
 };
 
 export const playButtonClick = () => {
@@ -76,7 +74,6 @@ export const playThruster = () => {
     const ctx = getAudioContext();
     if (!ctx) return;
     
-    // Noise buffer for thruster rumble
     const bufferSize = ctx.sampleRate * 0.3;
     const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
     const data = buffer.getChannelData(0);
@@ -124,6 +121,32 @@ export const playBounce = () => {
 
     osc.start();
     osc.stop(ctx.currentTime + 0.12);
+  } catch (e) {}
+};
+
+export const playDockSuccess = () => {
+  if (!soundEnabled) return;
+  try {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+
+    const notes = [440, 554.37, 659.25]; // A4, C#5, E5 major triad
+    notes.forEach((freq, idx) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, ctx.currentTime + idx * 0.06);
+
+      gain.gain.setValueAtTime(0.12, ctx.currentTime + idx * 0.06);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + idx * 0.06 + 0.35);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start(ctx.currentTime + idx * 0.06);
+      osc.stop(ctx.currentTime + idx * 0.06 + 0.35);
+    });
   } catch (e) {}
 };
 
@@ -181,7 +204,6 @@ export const playLaunchSequence = () => {
     const ctx = getAudioContext();
     if (!ctx) return;
 
-    // Rocket ignition sweep
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
 
