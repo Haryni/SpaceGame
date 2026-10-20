@@ -4,12 +4,12 @@ A feature-rich, immersive space-themed game built with engaging mechanics, smoot
 
 ---
 
-## 🌟 Overview
+## 🌟  Overview
 **Space Game** is an interactive arcade and exploration game where players navigate through cosmic environments, dodge or defeat obstacles, and explore deep space. Designed with clean architecture and responsive controls, it delivers a seamless gaming experience.
 
 ---
 
-## ✨ Features
+## ✨  Features
 - **Smooth Space Navigation:** Responsive movement controls for fluid maneuvering across the cosmos.
 - **Dynamic Obstacles & Challenges:** Engage with moving asteroids, hostile entities, or cosmic hazards.
 - **Score & Progression System:** Track high scores, health/shields, and level progression in real-time.
